@@ -6,7 +6,7 @@ jobs:
     strategy:
       max-parallel: 3
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
 
     steps:
       - name: checkout
@@ -23,7 +23,7 @@ jobs:
           python -m pip install --upgrade ".[dev]"
 
       - name: Style Check
-        if: matrix.python-version == '3.8'
+        if: matrix.python-version == '3.9'
         run: |
           black --check cdxj_indexer/*
           black --check test/*
@@ -34,7 +34,7 @@ jobs:
           python -m pytest -v --cov=cdxj_indexer --cov-report=xml
 
       - name: Upload coverage to Codecov
-        if: matrix.python-version == '3.8'
+        if: matrix.python-version == '3.9'
         uses: codecov/codecov-action@v4
         with:
           verbose: true  
