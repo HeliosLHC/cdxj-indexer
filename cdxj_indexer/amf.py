@@ -1,9 +1,8 @@
 import json
-import six
 from pyamf.remoting import Envelope, Request, decode
 from pyamf.flex.messaging import RemotingMessage
 from io import BytesIO
-from six.moves.urllib.parse import urlencode
+from urllib.parse import urlencode
 
 
 class Amf:
@@ -49,7 +48,7 @@ class Amf:
                 bodies.append(Amf.get_representation(i, max_calls))
             return "[" + ",".join(bodies) + "]"
 
-        elif isinstance(request_object, six.string_types):
+        elif isinstance(request_object, str):
             return request_object
 
         elif request_object is None:
